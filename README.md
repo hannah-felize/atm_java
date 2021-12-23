@@ -1,0 +1,2 @@
+# atm_java
+ This program is made with 5 different classes: one for the account, the user, the transaction, the bank, and the ATM. Once complete, the program will prompt the user to enter their unique user id to access their account. After that, the user will be prompted to enter their pin number. If entered successfully, they will be granted access to their account. Once inside their account, they will be able to view the balance in the checking and savings account, as well as the following options:  • Show account transactions • Withdraw • Deposit • Transfer • Quit
