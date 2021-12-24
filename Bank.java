@@ -7,6 +7,16 @@ public class Bank {
     private ArrayList<Account> accounts; // each user object already has its own list of accounts, but this will be a big list of all the accounts
 
     /**
+     * Create a new bank object with empty lists of users and accounts
+     * @param name the name of the bank
+     */
+    public Bank(String name) {
+        this.name = name;
+        this.users = new ArrayList<User>();
+        this.accounts = new ArrayList<Account>();
+    }
+
+    /**
      * Generate a new universal unique identifier for a user
      * @return the UUID
      */
@@ -78,5 +88,37 @@ public class Bank {
     public void addAccount(Account anAccount)
     {
         accounts.add(anAccount);
+    }
+
+    /**
+     * Add a user for the bank
+     * @param firstName
+     * @param lastName
+     * @param pin
+     */
+    public User addUser(String firstName, String lastName, String pin) {
+        // create a new User object and add it to our list
+        User newUser = new User(firstName, lastName, pin, this);
+        this.users.add(newUser);
+
+        // create a savings account for the user and add to User and Bank accounts lists
+        Account newAccount = new Account("Savings", newUser, this);
+        newUser.addAccount(newAccount);
+        this.addAccount(newAccount);
+
+        return newUser;
+    }
+
+    public User userLogin(String userID, String pin) {
+        // search through list of users
+        for (User u : this.users) {
+
+            // check user ID is correct
+            if (u.getUUID().compareTo(userID) == 0 && u.validatePIN(pin)) {
+                return u;
+            }
+        }
+
+        return null;
     }
 }

@@ -37,11 +37,6 @@ public class Account {
 
         // initialize transactions
         this.transactions = new ArrayList<Transaction>();
-
-        // add to holder and bank lists
-        holder.addAccount(this);
-        theBank.addAccount(this);
-        // note that you're not adding copies of the account to these list, they're both pointing to the same account object
     }
 
     /**
