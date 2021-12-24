@@ -46,4 +46,9 @@ public class Account {
     public String getUUID() {
         return this.uuid;
     }
+
+    public String getSummaryLine() {
+        // get the account's balance
+        // 01:13:42
+    }
 }

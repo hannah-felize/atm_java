@@ -23,7 +23,7 @@ public class Bank {
     public String getNewUserUUID() {
         // initialize
         String uuid;
-        Random rng = Random();
+        Random rng = new Random();  
         int len = 6;
         boolean nonUnique;
 
@@ -31,7 +31,7 @@ public class Bank {
         do {
             // generate the number
             uuid = "";
-            for (int c = 0; c < len; c++) {
+            for (int c = 0; c < len; c++) {                
                 uuid += ((Integer)rng.nextInt(10)).toString(); // the Integer class is wrapping around the primitive integer, allowing us to call methods like toString()
             }
 
@@ -43,7 +43,7 @@ public class Bank {
                     break;
                 }
             }
-        } while (nonUnique = true);
+        } while (nonUnique == true);
 
         return uuid;
     }
@@ -55,7 +55,7 @@ public class Bank {
     public String getNewAccountUUID() {
         // initialize
         String uuid;
-        Random rng = Random();
+        Random rng = new Random();
         int len = 10; // since there will likely be more accounts than users, this UUID length is 10
         boolean nonUnique;
 
@@ -75,7 +75,7 @@ public class Bank {
                     break;
                 }
             }
-        } while (nonUnique = true);
+        } while (nonUnique == true);
 
         return uuid;
 
@@ -120,5 +120,10 @@ public class Bank {
         }
 
         return null;
+    }
+
+    public void getName()
+    {
+        return this.name;
     }
 }

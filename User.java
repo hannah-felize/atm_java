@@ -52,7 +52,7 @@ public class User {
         }
 
         // get a new unique universal identifier for the user
-        this.uuid = thaBank.getNewUserUUID();
+        this.uuid = theBank.getNewUserUUID();
     
         // create empty list of accounts
         this.accounts = new ArrayList<Account>();
@@ -85,7 +85,7 @@ public class User {
     public boolean validatePIN(String aPIN) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
-            return MessageDigest.isEqual(md.digest(aPIN.getBytes(), this.pinHash)); // returns a boolean value that says whether they're equal
+            return MessageDigest.isEqual(md.digest(aPIN.getBytes()), this.pinHash); // returns a boolean value that says whether they're equal
         } catch (NoSuchAlgorithmException e) {
             System.err.println("error, caught NoSuchAlgorithmException"); 
             e.printStackTrace();
@@ -93,5 +93,22 @@ public class User {
         }
 
         return false;
+    }
+
+    /**
+     * Return the user's first name.
+     * @return the first name
+     */
+    public String getFirstName() {
+        return this.firstName;
+    }
+
+    public void printAccountsSummary() {
+        System.out.printf("\n\n%s's accounts summary", this.firstName);
+        for (int a = 0; a < this.accounts.size(); a++) {
+            System.out.printf("%d) %s", this.accounts.get(a).getSummaryLine());
+        }
+
+        System.out.println();
     }
 }
