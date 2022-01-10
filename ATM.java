@@ -85,6 +85,7 @@ public class ATM {
         // process the choice
         switch (choice) {
             case 1:
+                // the following 4 methods are static, as indicated by using the class name "ATM" rather than an object name
                 ATM.showTransHistory(theUser, sc);
                 break;
             case 2:
@@ -103,5 +104,70 @@ public class ATM {
         if (choice != 5) {
             ATM.printUserMenu(theUser, sc); // note that this is a recursive call
         }
+    }
+
+    /**
+     * 
+     * @param theUser
+     * @param sc
+     */
+    public static void showTransHistory(User theUser, Scanner sc) {
+        int theAccount;
+
+        do {
+            System.out.printf("Enter the number (1-%d) of the account whose transactions you want to see: ", theUser.numAccounts());
+            theAccount = sc.nextInt()-1;
+
+            if (theAccount < 0 || theAccount >= theUser.numAccounts()) {
+                System.out.println("Invalid account. Please try again.");
+            }
+
+        } while (theAccount < 0 || theAccount >= theUser.numAccounts());
+
+        // print the transaction history
+        theUser.printAcctTransHistory(theAccount);
+    }
+
+    public static void transferFunds(User theUser, Scanner sc) {
+        // initialize
+        int fromAccount;
+        int toAccount;
+        double amount;
+        double accountBalance;
+
+        // get the account to transfer from
+        do {
+            System.out.printf("Enter the number (1-%d) of the account to transfer from: ", theUser.numAccounts());
+            fromAccount = sc.nextInt() - 1;
+            if (fromAccount < 0 || fromAccount >= theUser.numAccounts()) {
+                System.out.println("Invalid account. Please try again.");
+            }
+        } while (fromAccount < 0 || fromAccount >= theUser.numAccounts());
+
+        accountBalance = theUser.getAccountBalance(fromAccount);
+
+        // get the account to transfer to
+        do {
+            System.out.printf("Enter the number (1-%d) of the account to transfer to: ", theUser.numAccounts());
+            toAccount = sc.nextInt() - 1;
+            if (toAccount < 0 || toAccount >= theUser.numAccounts()) {
+                System.out.println("Invalid account. Please try again.");
+            }
+        } while (toAccount < 0 || toAccount >= theUser.numAccounts());
+
+        // get the amount to transfer
+        do {
+            System.out.printf("Enter the amount to transfer (max $%.02f): ", accountBalance);
+            amount = sc.nextDouble();
+            if (amount < 0) {
+                System.out.println("Amount must be greater than zero.");
+            } else if (amount > accountBalance) {
+                System.out.printf("Amount must not be greater than balance of $%.02f.\n", accountBalance);
+            }
+        } while (amount < 0 || amount > accountBalance);
+
+        // finally, do the transfer
+        theUser.addAcctTransaction(fromAccount, -1*amount, String.format("Transfer to account %s", theUser.getAccountUUID(toAccount)));
+
     }
 }

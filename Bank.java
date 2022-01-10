@@ -122,7 +122,7 @@ public class Bank {
         return null;
     }
 
-    public void getName()
+    public String getName()
     {
         return this.name;
     }

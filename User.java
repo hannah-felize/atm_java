@@ -106,9 +106,55 @@ public class User {
     public void printAccountsSummary() {
         System.out.printf("\n\n%s's accounts summary", this.firstName);
         for (int a = 0; a < this.accounts.size(); a++) {
-            System.out.printf("%d) %s", this.accounts.get(a).getSummaryLine());
+            System.out.printf("%d) %s", a+1, this.accounts.get(a).getSummaryLine());
         }
 
         System.out.println();
+    }
+
+    /**
+     * Get the number of accounts of the user
+     * @return the number of accounts
+     */
+    public int numAccounts() {
+        return this.accounts.size();
+    }
+
+    /**
+     * Print transaction history for a particular account.
+     * @param accountIndex the index of the account to use
+     */
+    public void printAcctTransHistory(int accountIndex) {
+        this.accounts.get(accountIndex).printTransHistory();
+    }
+
+    /**
+     * Get the balance of a particular account
+     * @param accountIndex  the index of the account to use
+     * @return              the balance of the account
+     */
+    public double getAccountBalance(int accountIndex) {
+        return this.accounts.get(accountIndex).getBalance();
+    }
+
+    /**
+     * Get the UUID of a particular account
+     * @param accountIndex  the index of the account to use
+     * @return              the UUID of the account
+     */
+    public String getAccountUUID(int accountIndex) {
+        return this.accounts.get(accountIndex).getUUID();
+    }
+
+    /**
+     * Add a transaction to a particular account
+     * @param accountIndex  the index of the account
+     * @param amount        the amount of the transaction
+     * @param memo          the memo of the transaction
+     */
+    public void addAcctTransaction(int accountIndex, double amount, String memo) {
+        // for simplicity, we'll assume that there's always going to be a memo
+
+        this.accounts.get(accountIndex).addTransaction(amount, memo);
     }
 }
