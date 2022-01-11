@@ -45,6 +45,8 @@ public class Transaction {
 
         // set the memo
         this.memo = memo;
+
+        System.out.printf("\n=====DEBUGGING START WITHIN TRANSACTION.JAVA=====\ninAccount: %s\namount: %f\nmemo: %s\n====DEBUGGING END=====\n", inAccount, amount, memo); // for debugging
     }
 
     /**

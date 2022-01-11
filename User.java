@@ -155,6 +155,7 @@ public class User {
     public void addAcctTransaction(int accountIndex, double amount, String memo) {
         // for simplicity, we'll assume that there's always going to be a memo
 
+        System.out.printf("\n=====DEBUGGING START WITHIN USER.JAVA=====\naccountIndex: %s\namount: %f\nmemo: %s\n====DEBUGGING END=====\n", accountIndex, amount, memo); // for debugging
         this.accounts.get(accountIndex).addTransaction(amount, memo);
     }
 }
