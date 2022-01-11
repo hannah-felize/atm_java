@@ -3,6 +3,8 @@ import java.util.UUID;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+// feature/implementing_database TEST
+
 public class User {
     /**
      * The first name of the user
